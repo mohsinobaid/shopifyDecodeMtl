@@ -4,3 +4,8 @@ ShopifyApp.configure do |config|
   config.scope = "read_orders, read_products, read_customers"
   config.embedded_app = true
 end
+
+if ENV['API_KEY'] && ENV['API_PASS']
+  shop_url = "https://#{ENV['API_KEY']}:#{ENV['API_PASS']}@decodemtla.myshopify.com/admin"
+  ShopifyAPI::Base.site = shop_url
+end
