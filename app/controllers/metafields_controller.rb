@@ -1,0 +1,2 @@
+class MetafieldsController < ApplicationController
+end
