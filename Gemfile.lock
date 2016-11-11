@@ -83,6 +83,8 @@ GEM
     multi_json (1.12.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    nokogiri (1.6.8.1)
+      mini_portile2 (~> 2.1.0)
     nokogiri (1.6.8.1-x86-mingw32)
       mini_portile2 (~> 2.1.0)
     oauth2 (1.1.0)
@@ -100,6 +102,7 @@ GEM
     omniauth-shopify-oauth2 (1.1.16)
       oauth2 (~> 1.1.0)
       omniauth-oauth2 (~> 1.2)
+    pg (0.19.0)
     pg (0.19.0-x86-mingw32)
     rack (1.6.5)
     rack-test (0.6.3)
@@ -175,6 +178,7 @@ GEM
       sprockets-rails (>= 2.0, < 4.0)
 
 PLATFORMS
+  ruby
   x86-mingw32
 
 DEPENDENCIES
@@ -193,4 +197,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.11.2
+   1.13.6

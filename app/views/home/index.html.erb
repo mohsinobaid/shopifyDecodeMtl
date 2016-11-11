@@ -9,10 +9,26 @@
   </script>
 <% end %>
 
-<h2>Products</h2>
+<h2>Customers</h2>
+<table>
+	<tr>
+		<th>
+			Customer
+		</th>
+		<th>
+			Store Credit
+		</th>
+	</tr>
+	<% @customers.each do |customer| %>
+	<tr>
+		<td>
+			<a href="https://decodemtla.myshopify.com/admin/customers/<%= customer.id %>" target="_blank">
+				<%= customer.first_name %> <%= customer.last_name %>
+			</a>
+		</td>
+		<td>
 
-<ul>
-  <% @products.each do |product| %>
-    <li><%= link_to product.title, "https://#{@shop_session.url}/admin/products/#{product.id}", target: "_top" %></li>
-  <% end %>
-</ul>
+		</td>
+	</tr>
+	<% end %>
+</table>
