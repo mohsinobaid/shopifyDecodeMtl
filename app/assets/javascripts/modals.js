@@ -20,17 +20,35 @@ window.confirmModal = function () {
 window.inputModal = function (prompt) {
 	var selected = selectedCustomers();
 	if (selected.length > 0) {
-		alert("test");
 		ShopifyApp.Modal.input(prompt, function(result, data) {
-			debugger;
-			alert("works");
 			if (result) {
-				for (var i = 0; i < selected.length; i++) {
-					// alert(selected[i]);
-					// $.post("ajax/test.html", function( data ) {
-					// 	$( ".result" ).html( data );
-					// });
-				}
+
+				var currentCredit;
+				let map = {};
+				$.ajax({
+					url: "https://7d6515f1.ngrok.io/jsonp/customers.json",
+					jsonp: "callback",
+					dataType: "jsonp",
+					success: function(res) {
+						res.forEach(i => map[i.id] = i.credit);
+
+						let n = selected.length;
+						
+						for (let i = 0; i < selected.length; i++) {
+							$.ajax({
+							  url: "https://7d6515f1.ngrok.io/jsonp/customers/" + selected[i] + "/" + (parseInt(map[selected[i]]) + parseInt(data)),
+							  jsonp: "callback",
+							  dataType: "jsonp",
+							  success: function() {
+								  n--;
+								  if (n == 0) {
+									  updateCredit();
+								  }
+							  }
+							});
+						}
+					}
+				});
 
 				if (selected.length == 1) {
 					ShopifyApp.flashNotice("Added $" + data + " credit to " + selected.length + " account.");

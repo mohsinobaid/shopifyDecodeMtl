@@ -11,7 +11,6 @@
 
 <section class="table-container">
 	<button class="add-credit-button" onclick="inputModal('Enter credit amount:');">Add credit</button>
-	<!-- <button class="add-credit-button" onclick="alertModal();">Add credit</button> -->
 
 	<table>
 		<tr>
@@ -56,7 +55,7 @@
 				$<%= customer.total_spent %>
 			</td>
 			<td class="credit-<%= customer.id %>">
-				$0.00
+				$0
 			</td>
 		</tr>
 		<% end %>
