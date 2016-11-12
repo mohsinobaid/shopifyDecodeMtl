@@ -54,7 +54,7 @@ input[type=checkbox] {
 
 th, td {
 	text-align: center;
-	font-weight: normal;
+	/*font-weight: normal;*/
 	padding: 0.6rem;
 }
 
@@ -67,6 +67,7 @@ th:nth-child(2), td:nth-child(2) {
 	text-align: left;
 }
 
+th:nth-last-child(2), td:nth-last-child(2),
 th:last-child, td:last-child {
 	text-align: right;
 }

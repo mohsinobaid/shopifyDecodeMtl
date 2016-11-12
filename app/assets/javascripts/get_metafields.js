@@ -3,18 +3,17 @@
 //= require turbolinks
 //= require_tree .
 
-// alert("test");
+var testID = "5012951878";
+$(".credit-" + testID).html("$10.00");
 
-// $(document).ready(function(){
-// 	$.getJSON("ajax/test.json", function(data) {
-// 		var items = [];
-// 		$.each( data, function( key, val ) {
-// 			items.push( "<li id='" + key + "'>" + val + "</li>" );
-// 		});
-//
-// 		$( "<ul/>", {
-// 			"class": "my-new-list",
-// 			html: items.join( "" )
-// 		}).appendTo( "body" );
-// 	});
-// });
+$.getJSON("/metafields/", function(data) {
+	var ids = [];
+	ids.push(data.metafields[0].id);
+
+	for (var i = 0; i < ids.length; i++) {
+		var metafieldId = ids[i];
+		$.getJSON("/metafields/" + metafieldId + "/parse/", function(value) {
+			$(".credit-" + metafieldId).html(value.val);
+		});
+	}
+});
