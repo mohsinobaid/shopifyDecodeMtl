@@ -14,58 +14,63 @@
  *= require_self
  */
 
-table {
-	width: 100%;
-	border-radius: 2px;
+.table-container {
+	display: block;
+	margin: 1rem;
 	padding: 1rem;
 	background: white;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+	border-radius: 2px;
+}
+
+table {
+	width: calc(100% - 2rem);
 	font-family: sans-serif;
+	border-collapse: collapse;
 }
 
 .add-credit-button {
+	display: block;
 	float: right;
 	padding: 1rem;
-	margin: 2rem;
+	margin: 1.5rem 4rem;
 	border: none;
 	background: #0167B8;
 	color: white;
 	font-size: 1.1rem;
+	cursor: pointer;
 }
 
-th {
+input[type=checkbox] {
+	font-size: x-large;
+	cursor: pointer;
+}
+
+th, td {
 	text-align: center;
 	font-weight: normal;
+	padding: 0.6rem;
 }
 
-th:nth-child(2) {
+th:nth-child(2), td:nth-child(2) {
 	text-align: left;
 }
 
-th:last-child {
+th:last-child, td:last-child {
 	text-align: right;
 }
 
 tr {
 	height: 1.7rem;
+	border-bottom: 1px solid #ddd;
 }
 
-tr:hover {
+table tr:last-child {
+    border-bottom: none;
+}
+
+tr:hover:not(:first-child) {
 	background: rgba(0, 120, 189, 0.1);
-}
-
-td {
-	text-align: center;
-	margin: 0;
-	padding: 0;
-}
-
-td:nth-child(2) {
-	text-align: left;
-}
-
-td:last-child {
-	text-align: right;
 }
 
 td a {
