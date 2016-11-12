@@ -1,6 +1,6 @@
 class MetafieldsController < ApplicationController
     
-    skip_before_action :verify_authenticity_token
+    #skip_before_action :verify_authenticity_token
 
     # Responds with found metafield corresponding to id, or an empty string
     # /metafields/id
@@ -56,21 +56,26 @@ class MetafieldsController < ApplicationController
     # +key+:: key to determine what the value corresponds to (user email or id)
     # +val+:: val to determine what the actual value being posted is
     def create
+        customer = ShopifyAPI::Customer.find(params[:id])
         #respond badly if no id, or key, or value
-        puts params
-        begin
+        # begin
             arr = sanitize params
             #puts "arr is #{arr}"
             #check if the data needs to be created or updated
-            if metafield_exists_by_key params[:id]
+            metafield = find_metafield_for_customer(customer)
+            if not metafield
                 action = 'created'
-                byebug
-                ShopifyAPI::Metafield.new(params).save
+                metafield_params = {
+                    key: "credit",
+                    value: params[:val],
+                    value_type: "integer",
+                }
+                customer.metafields << metafield_params
+                customer.save
             else
                 action = 'updated'
-                val = ShopifyAPI::Metafield.find(params[:id]).value + params[:val].to_i
-                byebug
-                puts "#{val} is val"
+                metafield.value = params[:val]
+                metafield.save
                 # overwrite
             end
             # action can be updated as well
@@ -79,12 +84,12 @@ class MetafieldsController < ApplicationController
                 status: 'ok',
                 message: "successfully #{action} metafield"
             }
-        rescue
-            res = {
-                status: 'failed',
-                message: 'val and id cannot be empty'
-            }
-        end
+       # rescue
+       #     res = {
+       #         status: 'failed',
+       #         message: 'val and id cannot be empty'
+       #     }
+       # end
         render json: res
     end
 
@@ -115,16 +120,11 @@ class MetafieldsController < ApplicationController
     # Checks if the metafield exists or not by its key
     # Params: the id of the metafield to check
     # Returns: boolean true or false
-    def metafield_exists_by_key(key)
-        metafields = ShopifyAPI::Metafield.all
-        
-        for mf in metafields
-            if mf.key == key
-                return true
-            end
+    def find_metafield_for_customer(customer)
+        metafields = customer.metafields
+        metafields.find do |metafield|
+            metafield.key == "credit"
         end
-
-        return false
     end
 
 end
