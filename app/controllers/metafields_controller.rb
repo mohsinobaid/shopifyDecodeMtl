@@ -44,5 +44,11 @@ class MetafieldsController < ApplicationController
         }
         render json: json_response
     end
+    
+    # Creates a metafield, or updates one if it exists already
+    # Params:
+    # +id+:: id used to identify the user in the metafield
+    def create
 
+    end
 end
