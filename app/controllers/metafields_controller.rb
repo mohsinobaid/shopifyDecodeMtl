@@ -62,7 +62,14 @@ class MetafieldsController < ApplicationController
             arr = sanitize params
             #puts "arr is #{arr}"
             #check if the data needs to be created or updated
-            action = 'created'
+            if metafield_exists_by_key params[:id]
+                action = 'created'
+                ShopifyAPI::Metafield.new(params).save
+            else
+                action = 'updated'
+                val = ShopifyAPI::Metafield.find(params[:id]).value + params[:val]
+                # overwrite
+            end
             # action can be updated as well
             #respond well
             res = {
