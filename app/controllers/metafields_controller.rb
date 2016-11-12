@@ -1,10 +1,10 @@
 class MetafieldsController < ApplicationController
+    
+    # Responds with found metafield corresponding to id, or an empty string
+    # /metafields/id
+    # Params:
+    # +id+:: id used to identify the user in the metafield
     def show
-        # Responds with found metafield corresponding to id, or an empty string
-        # /metafields/id
-        # Params:
-        # +id+:: id used to identify the user in the metafield
-
         begin
             field = ShopifyAPI::Metafield.find(params[:id])
         rescue
@@ -18,10 +18,9 @@ class MetafieldsController < ApplicationController
         render json: json_response
     end
 
+    # Responds with entire list of metafields from the store
+    # /metafields
     def index
-        # Responds with entire list of metafields from the store
-        # /metafields
-
         fields = ShopifyAPI::Metafield.all
         json_response = {
             metafields: fields
@@ -29,12 +28,12 @@ class MetafieldsController < ApplicationController
         render json: json_response
     end
 
+    # Receives the metafield, and posts/puts based on if the metafield exists in the store
+    # such that the metafield will be updated and not overwritten if it exists
+    # /metafields/??
+    # Params:
+    # +metafield+:: metafield used to be created or updated
     def create
-        # Receives the metafield, and posts/puts based on if the metafield exists in the store
-        # such that the metafield will be updated and not overwritten if it exists
-        # /metafields/??
-        # Params:
-        # +metafield+:: metafield used to be created or updated
 
     end
 end
