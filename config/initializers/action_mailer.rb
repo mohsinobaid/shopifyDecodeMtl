@@ -8,4 +8,6 @@ Rails.application.configure do
     :authentication => 'login',
     :domain => 'eljojo.me'
   }
+  config.action_mailer.perform_deliveries = true
+  
 end

@@ -45,4 +45,6 @@ class MetafieldsController < ApplicationController
         render json: json_response
     end
 
+    # Use this code to send emails within a controller action:
+    # UserMailer.send_credit(name, email_address, credit).deliver_now!
 end
