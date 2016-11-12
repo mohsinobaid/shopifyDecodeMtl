@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   resources :metafields, only: [:show, :index]
   get '/metafields/:id/parse' => 'metafields#parse'
   root :to => 'home#index'
+  
+  post 'emailapi/send' => 'emailapi#send'
   mount ShopifyApp::Engine, at: '/'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
