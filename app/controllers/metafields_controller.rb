@@ -1,4 +1,5 @@
 class MetafieldsController < ApplicationController
+<<<<<<< HEAD
     def show
         # Responds with found metafield corresponding to id, or an empty string
         # /metafields/id
@@ -26,6 +27,15 @@ class MetafieldsController < ApplicationController
         fields = ShopifyAPI::Metafield.all
         json_response = {
             metafields: fields
+=======
+    def new
+        @metafield = Metafield.new
+    end
+
+    def show
+        json_response = {
+            user_email: params[:email]
+>>>>>>> 80713d3d07c75f6f237547b9879e045af7dddf07
         }
         render json: json_response
     end
