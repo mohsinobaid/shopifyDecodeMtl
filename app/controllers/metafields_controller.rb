@@ -30,7 +30,7 @@ class MetafieldsController < ApplicationController
         end
             
         json_response = {
-            metafield: value
+            val: value
         }
         render json: json_response
     end
