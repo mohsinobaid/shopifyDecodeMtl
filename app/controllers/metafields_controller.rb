@@ -1,5 +1,7 @@
 class MetafieldsController < ApplicationController
     
+    skip_before_action :verify_authenticity_token
+
     # Responds with found metafield corresponding to id, or an empty string
     # /metafields/id
     # Params:
@@ -52,7 +54,50 @@ class MetafieldsController < ApplicationController
     # +key+:: key to determine what the value corresponds to (user email or id)
     # +val+:: val to determine what the actual value being posted is
     def create
-
+        #respond badly if no id, or key, or value
+        #puts JSON.parse(params[:json])
+        begin
+            arr = sanitize params
+            #puts "arr is #{arr}"
+            #check if the data needs to be created or updated
+            action = 'created'
+            # action can be updated as well
+            #respond well
+            res = {
+                status: 'ok',
+                message: "successfully #{action} metafield"
+            }
+        rescue
+            res = {
+                status: 'failed',
+                message: 'val cannot be empty'
+            }
+        end
+        render json: res
     end
 
+    def sanitize(h)
+        toreturn = h
+        puts "#{toreturn['id'].to_i} is the val for id"
+        #byebug
+        if not (toreturn.key?('val') and toreturn.key?('id'))
+            #raise exception
+            raise 'Need val and id to post/put'
+        end
+
+        h.each{|key, val|
+            puts "#{key.to_s}:#{val.to_s}"
+            toreturn[key] = val
+            if key.to_s.eql? 'id'
+                if val.blank?
+                    toreturn[key] = '-1'
+                end
+            elsif key.to_s.eql? 'val'
+                if val.blank?
+                    toreturn[key] = '0'
+                end
+            end
+        }
+        return toreturn
+    end
 end
