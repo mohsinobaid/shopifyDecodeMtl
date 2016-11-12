@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :metafields, only: [:show, :index]
+  resources :metafields, only: [:show, :index, :create]
   get '/metafields/:id/parse' => 'metafields#parse'
   root :to => 'home#index'
   
