@@ -18,6 +18,23 @@ class MetafieldsController < ApplicationController
         render json: json_response
     end
 
+    # Response with the value of the specified id
+    # /metafields/id/parse
+    # Params:
+    # +id+:: id used to identify the user in the metafield
+    def parse
+        begin
+            value = ShopifyAPI::Metafield.find(params[:id]).value
+        rescue
+            value = ''
+        end
+            
+        json_response = {
+            metafield: value
+        }
+        render json: json_response
+    end
+
     # Responds with entire list of metafields from the store
     # /metafields
     def index
@@ -28,12 +45,4 @@ class MetafieldsController < ApplicationController
         render json: json_response
     end
 
-    # Receives the metafield, and posts/puts based on if the metafield exists in the store
-    # such that the metafield will be updated and not overwritten if it exists
-    # /metafields/??
-    # Params:
-    # +metafield+:: metafield used to be created or updated
-    def create
-
-    end
 end
