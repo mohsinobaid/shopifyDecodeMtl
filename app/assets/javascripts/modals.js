@@ -18,24 +18,26 @@ window.confirmModal = function () {
 }
 
 window.inputModal = function (prompt, selected) {
-  ShopifyApp.Modal.input(prompt, function(result, data){
-    if(result){
-	  for (i = 0; i < selected.length; i++) {
-		//   alert(selected[i]);
+	if (selected.length > 0) {
+		ShopifyApp.Modal.input(prompt, function(result, data){
+		if(result){
+			for (i = 0; i < selected.length; i++) {
+			//   alert(selected[i]);
 
-	  }
+			}
 
-	  if (selected.length == 1) {
-		  ShopifyApp.flashNotice("Added $" + data + " credit to " + selected.length + " account.");
-	  }
-	  else {
-		  ShopifyApp.flashNotice("Added $" + data + " credit to " + selected.length + " accounts.");
-	  }
-    }
-    else{
-    //   ShopifyApp.flashError("Input cancelled.");
-    }
-  });
+			if (selected.length == 1) {
+				ShopifyApp.flashNotice("Added $" + data + " credit to " + selected.length + " account.");
+			}
+			else {
+				ShopifyApp.flashNotice("Added $" + data + " credit to " + selected.length + " accounts.");
+			}
+		}
+		});
+	}
+	else {
+		ShopifyApp.flashError("No customers selected.");
+	}
 }
 
 window.newModal = function(path, title){

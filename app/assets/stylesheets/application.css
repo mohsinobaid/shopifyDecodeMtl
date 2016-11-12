@@ -16,29 +16,35 @@
 
 .table-container {
 	display: block;
-	margin: 1rem;
-	padding: 1rem;
+	margin: 1.3rem 0.8rem;
+	padding: 1.3rem;
 	background: white;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.07);
 	border-radius: 2px;
 }
 
 table {
-	width: calc(100% - 2rem);
+	width: 100%;
 	font-family: sans-serif;
+	font-size: 0.9rem;
 	border-collapse: collapse;
 }
 
 .add-credit-button {
 	display: block;
 	float: right;
-	padding: 1rem;
-	margin: 1.5rem 4rem;
+	padding: 0.7rem 1.2rem;
+	margin: 1.5rem 1rem;
 	border: none;
-	background: #0167B8;
+	border-radius: 4px;
+	background: #0078bd;
 	color: white;
-	font-size: 1.1rem;
+	font-size: 1rem;
 	cursor: pointer;
+}
+
+.add-credit-button:hover {
+	background: #005FA4;
 }
 
 input[type=checkbox] {
@@ -52,6 +58,11 @@ th, td {
 	padding: 0.6rem;
 }
 
+th:first-child, td:first-child {
+	width: 2rem;
+	text-align: left;
+}
+
 th:nth-child(2), td:nth-child(2) {
 	text-align: left;
 }
@@ -62,7 +73,7 @@ th:last-child, td:last-child {
 
 tr {
 	height: 1.7rem;
-	border-bottom: 1px solid #ddd;
+	border-bottom: 1px solid #eee;
 }
 
 table tr:last-child {
