@@ -38,7 +38,9 @@ class MetafieldsController < ApplicationController
     # Responds with entire list of metafields from the store
     # /metafields
     def index
+
         fields = ShopifyAPI::Metafield.all
+
         json_response = {
             metafields: fields
         }
@@ -51,4 +53,20 @@ class MetafieldsController < ApplicationController
     def create
 
     end
+
+    # Checks if the metafield exists or not by its key
+    # Params: the id of the metafield to check
+    # Returns: boolean true or false
+    def metafield_exists_by_key(key)
+        metafields = ShopifyAPI::Metafield.all
+        
+        for mf in metafields
+            if mf.key == key
+                return true
+            end
+        end
+
+        return false
+    end
+
 end
