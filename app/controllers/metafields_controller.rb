@@ -50,6 +50,9 @@ class MetafieldsController < ApplicationController
     # Creates a metafield, or updates one if it exists already
     # Params:
     # +id+:: id used to identify the user in the metafield
+    # +namespace+:: namespace to determine what type of metafield it is
+    # +key+:: key to determine what the value corresponds to (user email or id)
+    # +val+:: val to determine what the actual value being posted is
     def create
 
     end
