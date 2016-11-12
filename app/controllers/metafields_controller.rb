@@ -57,17 +57,20 @@ class MetafieldsController < ApplicationController
     # +val+:: val to determine what the actual value being posted is
     def create
         #respond badly if no id, or key, or value
-        #puts JSON.parse(params[:json])
+        puts params
         begin
             arr = sanitize params
             #puts "arr is #{arr}"
             #check if the data needs to be created or updated
             if metafield_exists_by_key params[:id]
                 action = 'created'
+                byebug
                 ShopifyAPI::Metafield.new(params).save
             else
                 action = 'updated'
-                val = ShopifyAPI::Metafield.find(params[:id]).value + params[:val]
+                val = ShopifyAPI::Metafield.find(params[:id]).value + params[:val].to_i
+                byebug
+                puts "#{val} is val"
                 # overwrite
             end
             # action can be updated as well
@@ -79,7 +82,7 @@ class MetafieldsController < ApplicationController
         rescue
             res = {
                 status: 'failed',
-                message: 'val cannot be empty'
+                message: 'val and id cannot be empty'
             }
         end
         render json: res
@@ -87,7 +90,6 @@ class MetafieldsController < ApplicationController
 
     def sanitize(h)
         toreturn = h
-        puts "#{toreturn['id'].to_i} is the val for id"
         #byebug
         if not (toreturn.key?('val') and toreturn.key?('id'))
             #raise exception
@@ -109,6 +111,7 @@ class MetafieldsController < ApplicationController
         }
         return toreturn
     end
+
     # Checks if the metafield exists or not by its key
     # Params: the id of the metafield to check
     # Returns: boolean true or false
