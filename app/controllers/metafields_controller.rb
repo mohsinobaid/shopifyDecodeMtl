@@ -8,7 +8,8 @@ class MetafieldsController < ApplicationController
     # +id+:: id used to identify the user in the metafield
     def show
         begin
-            field = ShopifyAPI::Metafield.find(params[:id])
+            customer = ShopifyAPI::Customer.find(params[:id])
+            field = find_metafield_for_customer(customer)
         rescue
             field = ''
         end
@@ -41,10 +42,19 @@ class MetafieldsController < ApplicationController
     # /metafields
     def index
 
-        fields = ShopifyAPI::Metafield.all
+        customers = ShopifyAPI::Customer.all
+        result = customers.map{|customer|
+            field = find_metafield_for_customer(customer)
+
+            {
+                customer_id: customer.id,
+                field: field
+            }
+
+        }
 
         json_response = {
-            metafields: fields
+            metafields: result
         }
         render json: json_response
     end
