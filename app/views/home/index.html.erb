@@ -9,11 +9,27 @@
   </script>
 <% end %>
 
-<h2>Customers</h2>
+<button class="add-credit-button" onclick="inputModal('Enter credit amount:', selectedCustomers())">Add Credit</button>
+
 <table>
 	<tr>
 		<th>
-			Customer
+			<input type="checkbox" id="select-all" onchange="checkAll(this)"/>
+		</th>
+		<th>
+			Name
+		</th>
+		<th>
+			Location
+		</th>
+		<th>
+			Orders
+		</th>
+		<th>
+			Last Order
+		</th>
+		<th>
+			Total Spent
 		</th>
 		<th>
 			Store Credit
@@ -22,9 +38,26 @@
 	<% @customers.each do |customer| %>
 	<tr>
 		<td>
+			<input type="checkbox" id="select-<%= customer.id %>" />
+		</td>
+		<td>
 			<a href="https://decodemtla.myshopify.com/admin/customers/<%= customer.id %>" target="_blank">
 				<%= customer.first_name %> <%= customer.last_name %>
 			</a>
+		</td>
+		<td>
+
+		</td>
+		<td>
+			<%= customer.orders_count %>
+		</td>
+		<td>
+			<a href="https://decodemtla.myshopify.com/admin/orders/<%= customer.last_order_id %>" target="_blank">
+				<%= customer.last_order_name %>
+			</a>
+		</td>
+		<td>
+			$<%= customer.total_spent %>
 		</td>
 		<td>
 
