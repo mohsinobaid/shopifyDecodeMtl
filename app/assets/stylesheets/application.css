@@ -19,9 +19,60 @@ table {
 	border-radius: 2px;
 	padding: 1rem;
 	background: white;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+	font-family: sans-serif;
+}
+
+.add-credit-button {
+	float: right;
+	padding: 1rem;
+	margin: 2rem;
+	border: none;
+	background: #0167B8;
+	color: white;
+	font-size: 1.1rem;
 }
 
 th {
-	text-align: left;
+	text-align: center;
 	font-weight: normal;
+}
+
+th:nth-child(2) {
+	text-align: left;
+}
+
+th:last-child {
+	text-align: right;
+}
+
+tr {
+	height: 1.7rem;
+}
+
+tr:hover {
+	background: rgba(0, 120, 189, 0.1);
+}
+
+td {
+	text-align: center;
+	margin: 0;
+	padding: 0;
+}
+
+td:nth-child(2) {
+	text-align: left;
+}
+
+td:last-child {
+	text-align: right;
+}
+
+td a {
+	text-decoration: none;
+	color: #0078bd;
+}
+
+td a:hover {
+	text-decoration: underline;
 }
