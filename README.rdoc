@@ -1,1 +1,5 @@
-== User Credit
+== Shopify Store Credit
+
+Shopify Store Credit is a Shopify application that allows merchants to issue store credit to customers based on purchase metrics.
+
+Merchants can easily give store credit to customers individually or en masse, directly through their dashboard, or when a new customer signs up for their mailing list.
